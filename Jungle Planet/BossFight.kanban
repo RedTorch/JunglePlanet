@@ -1,0 +1,41 @@
+{
+  "lists": [
+    {
+      "id": "2e34bd0b-7f17-4b64-9812-7a5a6a1da511",
+      "title": "Todo",
+      "cards": []
+    },
+    {
+      "id": "dc0bcefa-4782-4e7e-a245-990467f7d0bc",
+      "title": "Doing",
+      "cards": []
+    },
+    {
+      "id": "9bed7e5c-760b-481d-8d8c-f1e2be4aac21",
+      "title": "Done",
+      "cards": []
+    },
+    {
+      "id": "4d9de3c8-b4e2-4c7f-b3ac-ce71f368ba47",
+      "title": "Notes",
+      "cards": [
+        {
+          "id": "13cd69df-495a-486c-9acc-4a5bc42fbdbe",
+          "listId": "4d9de3c8-b4e2-4c7f-b3ac-ce71f368ba47",
+          "title": "Useful link (?)",
+          "description": "This could be useful when creating once-only animated objects (such as \"boss area attack\" prefabs); just spawn-and-forget.\nhttps://gist.github.com/eduardonunesp/29f4cf474ba14ad6f186efd0fbc6239b",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        }
+      ]
+    }
+  ],
+  "archive": {
+    "lists": [],
+    "cards": []
+  },
+  "settings": {
+    "labels": []
+  }
+}
