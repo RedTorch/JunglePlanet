@@ -24,6 +24,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private HoverTextManager htman;
     private bool gunIsEquipped = false;
     [SerializeField] private float KnockbackForce = 5f;
+
+    [SerializeField] private Animator recoilAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,7 @@ public class GunController : MonoBehaviour
     }
 
     void Fire() {
+        recoilAnimator.Play("Base Layer.GunRecoil", 0, 0f);
         if(!Physics.Raycast(transform.position, GunRoot.transform.forward, out hit, FireRange)) {
             return;
         }

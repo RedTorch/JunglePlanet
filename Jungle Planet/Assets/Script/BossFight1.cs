@@ -9,12 +9,16 @@ public class BossFight1 : MonoBehaviour
     public GunController Player;
     public Interactable interactable;
     public HoverTextManager htman;
+    public BossRotateController brcon;
+    public GameObject bossRotationAxis;
 
     public bool isTriggered = false;
     public bool isWon = false;
 
     private float BossHealthMax = 100f;
     private float BossHealth;
+
+    public string[] battlePhases;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,7 @@ public class BossFight1 : MonoBehaviour
         RenderSettings.fogColor = Color.white;
         interactable.SetDescription("[RMB] Use door");
         htman.ShowBossText(false);
+        brcon.Reset();
         BossHealth = BossHealthMax;
     }
 

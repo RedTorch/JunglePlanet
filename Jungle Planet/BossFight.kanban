@@ -8,7 +8,17 @@
     {
       "id": "dc0bcefa-4782-4e7e-a245-990467f7d0bc",
       "title": "Doing",
-      "cards": []
+      "cards": [
+        {
+          "id": "c67b8aca-c4db-49f6-99f5-c7e0fc0abad6",
+          "listId": "dc0bcefa-4782-4e7e-a245-990467f7d0bc",
+          "title": "Player respawn",
+          "description": "- Reset player state\n- Delete all spawned elements\n- Re/de-load sections of the scene",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        }
+      ]
     },
     {
       "id": "9bed7e5c-760b-481d-8d8c-f1e2be4aac21",
@@ -24,6 +34,15 @@
           "listId": "4d9de3c8-b4e2-4c7f-b3ac-ce71f368ba47",
           "title": "Useful link (?)",
           "description": "This could be useful when creating once-only animated objects (such as \"boss area attack\" prefabs); just spawn-and-forget.\nhttps://gist.github.com/eduardonunesp/29f4cf474ba14ad6f186efd0fbc6239b",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "38ea43c0-a342-4e50-b84f-2cd97cfbed6e",
+          "listId": "4d9de3c8-b4e2-4c7f-b3ac-ce71f368ba47",
+          "title": "Attack ideas?",
+          "description": "Smaller attacks:\n- Ruins rise up around the player; chasers rise up from around the ruins to attack the player. (They move in a zigzaggy pattern? Or use straight-line dash attacks that are telegraphed on the ground?)\nMain Attacks:\n- An alert square appears, then metal rods rain down in that spot (one animation)\n- An alert appears, and a tower rises from the ground. It sprays horizontal bullets in a pattern and disappears.\n- Ruins hover and throw bouncing debris which the player must shoot or avoid.\nNote: attacks will only ever come from one side at a time. The boss will rotate over to that side.\n\nMethod: for directional attacks, a spawner attached to the boss rotator will create the spawn ruins/ avalanche ruins. For non-directional, on-grid attacks (metal rain, rising ruins), these will just be spawned randomly on the grid. Boss attack pattern will mix directional and non-directional attacks. How to attack boss??",
           "labels": [],
           "checkboxes": [],
           "comments": []

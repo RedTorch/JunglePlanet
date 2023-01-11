@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class AutoDestroyPS : MonoBehaviour
 {
-    public float Time = 10f;
-    private ParticleSystem ps;
-    private bool isNull = false;
+    [SerializeField] private float timer = 20f;
+    [SerializeField] private ParticleSystem ps;
     // Start is called before the first frame update
     void Start()
     {
         // If there is a particle system, override the given Time and destroy when particle system is done
-        if(gameObject.GetComponent<ParticleSystem>() == null) {
-            Destroy(gameObject,Time);
-            isNull = true;
-            return;
-        }
         ps = gameObject.GetComponent<ParticleSystem>();
+        if(gameObject.GetComponent<Animator>() != null) {
+            timer = gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isNull && !ps.IsAlive())
-        {
-            Destroy(gameObject);
+        if(ps == null) {
+            timer -= Time.deltaTime;
+            if(timer <= 0f) {
+                Destroy(gameObject);
+            }
+        }
+        else {
+            if (!ps.IsAlive()) {
+                Destroy(gameObject);
+            }
         }
     }
 }
