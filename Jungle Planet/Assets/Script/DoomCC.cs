@@ -14,14 +14,17 @@ public class DoomCC : MonoBehaviour
 
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private float dashDuration = 0.1f;
-    private float dashSpeed = 90f;
+    private float dashDuration = 0.15f;
+    private float dashSpeed = 75f;
     private Vector3 dashVector;
+    [SerializeField] private AnimationCurve dashCurve;
 
-    [SerializeField] private string state = "";
+    [SerializeField] private Animator camAnimator;
     // Start is called before the first frame update
     void Start()
     {
+        // camAnimator.SetBool("isRunning", false);
+        camAnimator.SetFloat("runSpeed", 0f);
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -34,22 +37,28 @@ public class DoomCC : MonoBehaviour
         camroot.transform.localRotation = Quaternion.Euler(-1f * CurrLookRotation.y, 0f, 0f);
         
         if(isDashing) {
-            rb.velocity = dashVector;
+            // camAnimator.SetBool("isRunning", false);
+            camAnimator.SetFloat("runSpeed", 0f);
+            rb.velocity = dashVector * dashCurve.Evaluate(Mathf.Clamp(dashTimer/dashDuration,0f,1f));
             dashTimer -= Time.deltaTime;
             if(dashTimer <= 0) {
                 isDashing = false;
-                state = "dashing";
+                // mainCam.fieldOfView = 60f;
             }
         }
         else {
             if(Input.GetButtonDown("Fire3")) {
+                camAnimator.SetBool("isRunning", false);
                 isDashing = true;
                 dashTimer = dashDuration;
                 dashVector = ((transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"))).normalized * dashSpeed;
+                // mainCam.fieldOfView = 70f;
             }
-            state = "running";
             CurrVelocity = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * MoveSpeed;
+            // camAnimator.SetBool("isRunning", CurrVelocity.magnitude != 0f);
+            camAnimator.SetFloat("runSpeed", CurrVelocity.magnitude);
             rb.velocity = (transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z);
+            // rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity);
         }
     }
 

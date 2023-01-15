@@ -9788,6 +9788,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4910276400953867263, guid: ef10f1a52b95c4a35b9be32c4297b289, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 446362431170090573, guid: a07bd460efb3643829089b728aa37ff0, type: 3}
     - target: {fileID: -3427521038726327913, guid: ef10f1a52b95c4a35b9be32c4297b289, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9820,6 +9824,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6333908040200027038, guid: ef10f1a52b95c4a35b9be32c4297b289, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 446362431170090573, guid: a07bd460efb3643829089b728aa37ff0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef10f1a52b95c4a35b9be32c4297b289, type: 3}
 --- !u!4 &572778034 stripped
@@ -10267,7 +10275,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -12377,8 +12385,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Text here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
+  m_sharedMaterial: {fileID: 540391960735917292, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13824,7 +13832,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -20618,7 +20626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1228267904}
   m_Layer: 0
-  m_Name: Controller Components
+  m_Name: Player Components
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20639,7 +20647,7 @@ Transform:
   - {fileID: 1498907076}
   - {fileID: 1973367386}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229773163
 GameObject:
@@ -21034,8 +21042,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLACEHOLDER BOSS TEXT FOR NOW
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
+  m_sharedMaterial: {fileID: 540391960735917292, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22600,8 +22608,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10 / 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
+  m_sharedMaterial: {fileID: 540391960735917292, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25124,13 +25132,14 @@ GameObject:
   - component: {fileID: 1498907075}
   - component: {fileID: 1498907074}
   - component: {fileID: 1498907073}
-  - component: {fileID: 1498907072}
   - component: {fileID: 1498907071}
+  - component: {fileID: 1498907072}
   - component: {fileID: 1498907070}
   - component: {fileID: 1498907069}
   - component: {fileID: 1498907068}
+  - component: {fileID: 1498907077}
   m_Layer: 6
-  m_Name: CustomFPController
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25154,13 +25163,15 @@ MonoBehaviour:
   smokePrefab: {fileID: 8316154104731859741, guid: d02d15a349bcc468b9978f59dcf0b873, type: 3}
   RPM: 600
   MagSize: 30
-  ReloadTime: 3
+  ReloadTime: 1
   FireRange: 400
   Damage: 3
   MuzzleFlash: {fileID: 193968132}
   htman: {fileID: 1973367387}
   KnockbackForce: 5
   recoilAnimator: {fileID: 1784560610}
+  audioClip: {fileID: 8300000, guid: 1175c0589f1e547389c560db2b7e2405, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &1498907069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25225,7 +25236,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camroot: {fileID: 2044255032}
-  state: 
+  dashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 10
+      outSlope: 10
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -9.999998
+      outSlope: -9.999998
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  camAnimator: {fileID: 2044255034}
 --- !u!136 &1498907073
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25306,6 +25359,102 @@ Transform:
   m_Father: {fileID: 1228267904}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1498907077
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498907067}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1499773656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25440,12 +25589,12 @@ GameObject:
   - component: {fileID: 1509121643}
   - component: {fileID: 1509121645}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: HarmObjectTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1509121639
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25517,12 +25666,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509121638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 7.300001, z: 230.6}
+  m_LocalPosition: {x: -12, y: 7.300001, z: 272.8}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1509121643
 MonoBehaviour:
@@ -26749,7 +26898,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -31038,9 +31187,10 @@ MonoBehaviour:
   htman: {fileID: 1973367387}
   brcon: {fileID: 857923729}
   bossRotationAxis: {fileID: 857923727}
+  bossObject: {fileID: 973842098}
   isTriggered: 0
   isWon: 0
-  battlePhases: []
+  chaserPrefab: {fileID: 295385478470862500, guid: 7ae01ff3e1eca4cc59b884ca4e2c4921, type: 3}
 --- !u!1 &1814100851
 GameObject:
   m_ObjectHideFlags: 0
@@ -32392,7 +32542,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -33249,8 +33399,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 30 / 30
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
+  m_sharedMaterial: {fileID: 540391960735917292, guid: 1b5e16aff9fe8494db1135c5609aaaec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

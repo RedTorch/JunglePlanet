@@ -37,6 +37,7 @@ public class DamageReceiver : MonoBehaviour
         }
         if(destroyOnDeath) {
             print("destroying " + gameObject.name);
+            gameObject.SendMessage("playerDeath", null, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
     }

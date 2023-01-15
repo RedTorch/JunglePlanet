@@ -6,6 +6,7 @@ public class AutoDestroyPS : MonoBehaviour
 {
     [SerializeField] private float timer = 20f;
     [SerializeField] private ParticleSystem ps;
+    [SerializeField] private GameObject prefabOnDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,9 @@ public class AutoDestroyPS : MonoBehaviour
         if(ps == null) {
             timer -= Time.deltaTime;
             if(timer <= 0f) {
+                if(prefabOnDestroy != null) {
+                    Instantiate(prefabOnDestroy, transform.position, Quaternion.identity);
+                }
                 Destroy(gameObject);
             }
         }

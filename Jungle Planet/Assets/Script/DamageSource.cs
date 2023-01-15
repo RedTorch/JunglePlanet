@@ -23,7 +23,7 @@ public class DamageSource : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.GetComponent<DamageReceiver>() != null) {
+        if(other.gameObject.GetComponent<DamageReceiver>() != null && other.gameObject.tag != gameObject.tag) {
             other.gameObject.GetComponent<DamageReceiver>().ReceiveDamage(damageAmount);
             if(dreceiver != null) {
                 dreceiver.OnKilled();

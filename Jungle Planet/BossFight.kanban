@@ -23,7 +23,17 @@
     {
       "id": "9bed7e5c-760b-481d-8d8c-f1e2be4aac21",
       "title": "Done",
-      "cards": []
+      "cards": [
+        {
+          "id": "b3afcc93-9407-416c-acd4-b48ec6123d4a",
+          "listId": "9bed7e5c-760b-481d-8d8c-f1e2be4aac21",
+          "title": " BUG: enemies damage each other on collision",
+          "description": "",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        }
+      ]
     },
     {
       "id": "4d9de3c8-b4e2-4c7f-b3ac-ce71f368ba47",

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
 public class GunController : MonoBehaviour
 {
     [SerializeField] private GameObject GunRoot;
@@ -15,7 +17,7 @@ public class GunController : MonoBehaviour
     private int currMag;
     [SerializeField] private float ReloadTime;
     private float reloadCooldown;
-    private bool isReloading;
+    private bool isReloading = false;
     [SerializeField] private float FireRange;
     private RaycastHit hit;
     [SerializeField] private float Damage;
@@ -26,15 +28,25 @@ public class GunController : MonoBehaviour
     [SerializeField] private float KnockbackForce = 5f;
 
     [SerializeField] private Animator recoilAnimator;
+
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioSource audioSource;
+
+    private float currFov = 60f;
     // Start is called before the first frame update
     void Start()
     {
         fireInterval = 60f/RPM;
+        currMag = MagSize;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!gunIsEquipped) {
+            return;
+        }
         if(isReloading) {
             reloadCooldown -= Time.deltaTime;
             if(reloadCooldown <= 0f) {
@@ -61,6 +73,11 @@ public class GunController : MonoBehaviour
         }
         muzzleFlashBrightness = Mathf.Clamp(muzzleFlashBrightness - (Time.deltaTime*8f),0f,1f); // 5f is muzzle flash decay speed
         MuzzleFlash.intensity = muzzleFlashBrightness * 2f; // 2f is intensity of muzzle flash
+        if(Input.GetButton("Fire1")) {
+            currFov = Mathf.Lerp(currFov,40f,20f*Time.deltaTime);
+        }
+        currFov = Mathf.Lerp(currFov,60f,5f*Time.deltaTime);
+        Camera.main.fieldOfView = currFov;
     }
 
     void Reload() {
@@ -71,6 +88,7 @@ public class GunController : MonoBehaviour
 
     void Fire() {
         recoilAnimator.Play("Base Layer.GunRecoil", 0, 0f);
+        audioSource.PlayOneShot(audioClip,1f);
         if(!Physics.Raycast(transform.position, GunRoot.transform.forward, out hit, FireRange)) {
             return;
         }
@@ -101,11 +119,13 @@ public class GunController : MonoBehaviour
         GunRoot.SetActive(i);
         htman.ShowWeaponText(i);
         htman.ShowPlayerHpText(i);
+        currMag = MagSize;
     }
 
     public string getDisplayText() {
         if(isReloading) {
-            return "RELOADING";
+            int r = (int)Mathf.Floor((9f * reloadCooldown / ReloadTime) + 0.1f);
+            return "[" + ("RELOADING").Substring(0,9-r) + (new String(' ',(r))) + "]";
         }
         return currMag + " / " + MagSize;
     }
