@@ -47,7 +47,12 @@ public class ChasePlayer : MonoBehaviour
         }
         else {
             if(updatePlayerPosition) {
-                targetPosition = player.transform.position;
+                if(transform.position.y < 4f) {
+                    targetPosition = transform.position + new Vector3(0f,10f,0f);
+                }
+                else {
+                    targetPosition = player.transform.position;
+                }
             }
             rb.AddForce(((targetPosition - transform.position).normalized * force) - rb.velocity);
         }
