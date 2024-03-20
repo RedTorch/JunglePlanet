@@ -8,21 +8,27 @@ public class DamageReceiver : MonoBehaviour
     [SerializeField] private bool destroyOnDeath = false;
     [SerializeField] private GameObject prefabToSpawnOnDeath;
     [SerializeField] HoverTextManager htman;
+    private DoomCC myDcc;
     private float hp = 10f;
     private bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
         hp = maxHp;
+        myDcc = gameObject.GetComponent<DoomCC>();
+        if(gameObject.tag == "Player")
+        {
+            print("gameObject player status: myDcc is null? " + (myDcc==null));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //
     }
 
-    private void Reset() {
+    public void Reset() {
         dead = false;
         hp = maxHp;
     }
@@ -31,13 +37,18 @@ public class DamageReceiver : MonoBehaviour
         // do the killed thing!
         // deactivate player capsule
         // show respawn button
-        print(gameObject.name + " has received fatal damage");
+        // print(gameObject.name + " has received fatal damage");
         if(prefabToSpawnOnDeath != null) {
             Instantiate(prefabToSpawnOnDeath, transform.position, Quaternion.identity);
         }
+        // print("destroying " + gameObject.name);
+        gameObject.SendMessage("playerDeath", null, SendMessageOptions.DontRequireReceiver);
+        if(myDcc != null)
+        {
+            print("calling player death from DamageReceiver");
+            myDcc.playerDeath();
+        }
         if(destroyOnDeath) {
-            print("destroying " + gameObject.name);
-            gameObject.SendMessage("playerDeath", null, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
     }

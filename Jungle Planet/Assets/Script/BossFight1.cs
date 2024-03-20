@@ -19,13 +19,15 @@ public class BossFight1 : MonoBehaviour
     private float BossHealthMax = 100f;
     private float BossHealth;
 
-    private string[] battlePhases; // INPROG: implement a parser for strings into timed boss events and patterns
+
     private int currPhaseIndex = 0;
 
-    public GameObject chaserPrefab;
+    [SerializeField] private GameObject chaserPrefab;
     private float chaserSpawnCooldown = 10f;
     private int chaserAmountPerSpawn = 5;
+    [SerializeField] private GameObject spikePrefab;
     private float nextTime = 0f;
+    private bool isActive = true; // TODO: use this as an actual condition (so the bossfight only is going on when it should...)
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +38,15 @@ public class BossFight1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isActive)
+        {
+            return;
+        }
+        // some pattern of spikeprefab and chasers
         spawnChaser();
     }
 
-    void Reset() { // e.g. if restarting battle
+    public void Reset() { // e.g. if restarting battle
         bridge.SetActive(true);
         arena.SetActive(false);
         Player.SetGunEquipped(false);
@@ -64,7 +71,7 @@ public class BossFight1 : MonoBehaviour
             htman.ShowBossText(true);
         }
         else if(isWon) {
-            // move to next scene
+            // TODO: move to next scene, i.e. next level
         }
     }
 
@@ -73,13 +80,9 @@ public class BossFight1 : MonoBehaviour
         interactable.SetDescription("[RMB] Use door");
     }
 
-    void BossPhaseSet() {
-
-    }
-
     void BossTakeDamage(float damage) {
         BossHealth -= damage;
-        // update UI element;
+        // TODO: update UI element;
         if(BossHealth <= 0f) {
             SetIsWon();
         }
@@ -98,5 +101,10 @@ public class BossFight1 : MonoBehaviour
             }
             nextTime = Time.time + chaserSpawnCooldown + Random.Range(chaserSpawnCooldown*(-0.5f),chaserSpawnCooldown*0.5f);
         }
+    }
+
+    public void Activate()
+    {
+        isActive = true;
     }
 }

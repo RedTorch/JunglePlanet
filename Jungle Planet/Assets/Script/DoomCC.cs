@@ -20,6 +20,9 @@ public class DoomCC : MonoBehaviour
     [SerializeField] private AnimationCurve dashCurve;
 
     [SerializeField] private Animator camAnimator;
+    [SerializeField] private LevelManager myLm;
+
+    private bool isActive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,12 @@ public class DoomCC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isActive)
+        {
+            rb.velocity = new Vector3(0f,0f,0f);
+            camAnimator.SetBool("isRunning", false);
+            return;
+        }
         CurrLookRotation.x += Input.GetAxis("Mouse X") * LookSpeed;
         CurrLookRotation.y = Mathf.Clamp(CurrLookRotation.y + (Input.GetAxis("Mouse Y") * LookSpeed),-80f,80f);
         transform.localRotation = Quaternion.Euler(0f,CurrLookRotation.x,0f);
@@ -71,5 +80,19 @@ public class DoomCC : MonoBehaviour
         else {
             // pause game, etc..
         }
+    }
+
+    public void Reset()
+    {
+        isActive = true;
+    }
+
+    public void playerDeath()
+    {
+        print("player death");
+        isActive = false;
+        myLm.showDeathScreen(true);
+        // show death screen...
+        // deactivate the player
     }
 }
