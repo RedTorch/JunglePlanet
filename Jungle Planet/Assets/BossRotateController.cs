@@ -6,7 +6,7 @@ public class BossRotateController : MonoBehaviour
 {
     private float currAngle = 0f;
     private float targetAngle = 0f;
-    private float lerpSpeed = 90f;
+    private float lerpSpeed = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class BossRotateController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f,currAngle,0f);
     }
 
-    void SetTargetAngle(float newta) {
+    public void SetTargetAngle(float newta) {
         targetAngle = Mathf.Clamp(newta,0f,360f);
     }
 

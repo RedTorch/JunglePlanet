@@ -16,18 +16,21 @@ public class BossFight1 : MonoBehaviour
     public bool isTriggered = false;
     public bool isWon = false;
 
-    private float BossHealthMax = 100f;
+    private float BossHealthMax = 100f; // default 500f
     private float BossHealth;
 
-
-    private int currPhaseIndex = 0;
+    private int currSide = 0; // ranges from 0 to 3, 0 is base position and the rest are counterclockwise
+    private float nextSpikeTime = 0f;
+    private float currRootRot = 0f;
 
     [SerializeField] private GameObject chaserPrefab;
     private float chaserSpawnCooldown = 10f;
-    private int chaserAmountPerSpawn = 5;
+    private int chaserBaseSpawnAmt = 1;
+    private int chaserAmountPerSpawn = 1;
     [SerializeField] private GameObject spikePrefab;
     private float nextTime = 0f;
-    private bool isActive = true; // TODO: use this as an actual condition (so the bossfight only is going on when it should...)
+    private float nextRotShuffleTime = 0f;
+    private bool isActive = false; // TODO: use this as an actual condition (so the bossfight only is going on when it should...)
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +45,11 @@ public class BossFight1 : MonoBehaviour
         {
             return;
         }
+        //
         // some pattern of spikeprefab and chasers
+        shuffleDirection();
+        spawnSpikeWave();
+        brcon.SetTargetAngle(90f*currSide);
         spawnChaser();
     }
 
@@ -61,6 +68,7 @@ public class BossFight1 : MonoBehaviour
 
     void BossFight1_Triggered() {
         if(!isTriggered) {
+            isActive = true;
             bridge.SetActive(false);
             arena.SetActive(true);
             Player.SetGunEquipped(true);
@@ -80,7 +88,7 @@ public class BossFight1 : MonoBehaviour
         interactable.SetDescription("[RMB] Use door");
     }
 
-    void BossTakeDamage(float damage) {
+    public void BossTakeDamage(float damage) {
         BossHealth -= damage;
         // TODO: update UI element;
         if(BossHealth <= 0f) {
@@ -95,6 +103,7 @@ public class BossFight1 : MonoBehaviour
     // Out: instantiates chaserPrefab ==> add feature: with random position!
     void spawnChaser() {
         if(Time.time >= nextTime) {
+            chaserAmountPerSpawn = chaserBaseSpawnAmt + Mathf.CeilToInt((1f-GetBossHPPercent())*2f*chaserBaseSpawnAmt);
             for(int i = 0; i < chaserAmountPerSpawn; i++) {
                 Vector3 random = new Vector3(Random.Range(-20f,20f),Random.Range(-20f,20f),Random.Range(-20f,20f));
                 Instantiate(chaserPrefab, bossObject.position + random, Quaternion.identity);
@@ -103,8 +112,29 @@ public class BossFight1 : MonoBehaviour
         }
     }
 
+    void spawnSpikeWave()
+    {
+        if(Time.time < nextSpikeTime)
+        {
+            return;
+        }
+        GameObject newSpike = Instantiate(spikePrefab, arena.transform.position, Quaternion.Euler(0, 90f*currSide, 0));
+        newSpike.transform.Translate(Vector3.right * Random.Range(-29f, 29f));
+        nextSpikeTime = Time.time + (2f * (1f + (1f*GetBossHPPercent())));
+    }
+
     public void Activate()
     {
         isActive = true;
+    }
+
+    private void shuffleDirection()
+    {
+        if(Time.time < nextRotShuffleTime)
+        {
+            return;
+        }
+        currSide = Random.Range(0,4);
+        nextRotShuffleTime = Time.time + (4f * (1f + (1f*GetBossHPPercent())));
     }
 }

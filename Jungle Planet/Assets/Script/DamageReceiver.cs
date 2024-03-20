@@ -12,7 +12,7 @@ public class DamageReceiver : MonoBehaviour
     private float hp = 10f;
     private bool dead = false;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         hp = maxHp;
         myDcc = gameObject.GetComponent<DoomCC>();
@@ -53,7 +53,7 @@ public class DamageReceiver : MonoBehaviour
         }
     }
 
-    public void ReceiveDamage(float amount) {
+    public virtual void ReceiveDamage(float amount) {
         if(htman != null) {
             htman.ShowDamagedOverlay();
         }

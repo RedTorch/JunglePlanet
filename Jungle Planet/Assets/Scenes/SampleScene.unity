@@ -15007,7 +15007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &888003381
 Transform:
   m_ObjectHideFlags: 0
@@ -15692,7 +15692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &911639537
 Transform:
   m_ObjectHideFlags: 0
@@ -25533,7 +25533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498907067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 346.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28295,7 +28295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1619914475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31330,7 +31330,7 @@ GameObject:
   - component: {fileID: 1798109174}
   m_Layer: 0
   m_Name: BossFight
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31374,7 +31374,7 @@ MonoBehaviour:
   isTriggered: 0
   isWon: 0
   chaserPrefab: {fileID: 295385478470862500, guid: 7ae01ff3e1eca4cc59b884ca4e2c4921, type: 3}
-  spikePrefab: {fileID: 0}
+  spikePrefab: {fileID: 7156933222195905282, guid: 714ceca2475bc49bd9ee824565254df9, type: 3}
 --- !u!1 &1814100851
 GameObject:
   m_ObjectHideFlags: 0
@@ -33223,7 +33223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1946313261
 Transform:
   m_ObjectHideFlags: 0

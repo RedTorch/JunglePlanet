@@ -21,6 +21,7 @@ public class DoomCC : MonoBehaviour
 
     [SerializeField] private Animator camAnimator;
     [SerializeField] private LevelManager myLm;
+    private DamageReceiver myDm;
 
     private bool isActive = true;
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class DoomCC : MonoBehaviour
         // camAnimator.SetBool("isRunning", false);
         camAnimator.SetFloat("runSpeed", 0f);
         rb = gameObject.GetComponent<Rigidbody>();
+        myDm = gameObject.GetComponent<DamageReceiver>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class DoomCC : MonoBehaviour
         {
             rb.velocity = new Vector3(0f,0f,0f);
             camAnimator.SetBool("isRunning", false);
+            camAnimator.SetFloat("runSpeed", 0f);
             return;
         }
         CurrLookRotation.x += Input.GetAxis("Mouse X") * LookSpeed;
@@ -85,6 +88,7 @@ public class DoomCC : MonoBehaviour
     public void Reset()
     {
         isActive = true;
+        myDm.Reset();
     }
 
     public void playerDeath()

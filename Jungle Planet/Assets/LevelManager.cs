@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private BossFight1 myBf;
     private GameObject player;
     private Transform myPlayerTransform;
-    private DamageReceiver myPlayerDr;
+    private DoomCC myPlayerDcc;
     private Vector3 lastCheckpoint;
     [SerializeField] private GameObject myDeathScreen;
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class LevelManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         myPlayerTransform = player.transform;
-        myPlayerDr = player.GetComponent<DamageReceiver>();
+        myPlayerDcc = player.GetComponent<DoomCC>();
         lastCheckpoint = myPlayerTransform.position;
         showDeathScreen(false);
     }
@@ -28,10 +29,12 @@ public class LevelManager : MonoBehaviour
 
     void ResetToLastCheckpoint()
     {
-        myBf.Reset();
-        myPlayerTransform.position = lastCheckpoint;
-        myPlayerDr.Reset();
-        showDeathScreen(false);
+        // myBf.Reset();
+        // myPlayerTransform.position = lastCheckpoint;
+        // myPlayerDcc.Reset();
+        // showDeathScreen(false);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void SetCheckpointToCurrent()
@@ -43,5 +46,9 @@ public class LevelManager : MonoBehaviour
     {
         print("setactive has been set: " + iss);
         myDeathScreen.SetActive(iss);
+        if(iss)
+        {
+            Invoke("ResetToLastCheckpoint",5f);
+        }
     }
 }
