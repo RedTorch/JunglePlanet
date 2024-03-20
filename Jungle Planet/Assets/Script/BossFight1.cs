@@ -85,6 +85,7 @@ public class BossFight1 : MonoBehaviour
 
     void SetIsWon() {
         isWon = true;
+        isActive = false;
         interactable.SetDescription("[RMB] Use door");
     }
 
